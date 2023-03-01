@@ -1,12 +1,12 @@
 import PropTypes from 'prop-types';
 import { ContactEl, ContactsList } from './Contacts.styled';
-export function Contacts({ state, deleteContact }) {
+export function Contacts({ contacts, filter, deleteContact }) {
   return (
     <>
       <h2>Contacts</h2>
       <ContactsList>
-        {state.contacts.map(e => {
-          if (!e.name.toLowerCase().includes(state.filter)) {
+        {contacts.map(e => {
+          if (!e.name.toLowerCase().includes(filter)) {
             return null;
           }
 
@@ -31,11 +31,11 @@ export function Contacts({ state, deleteContact }) {
   );
 }
 Contacts.propTypes = {
-  state: PropTypes.shape({
-    contacts: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-      })
-    ),
-  }),
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+    })
+  ),
 };

@@ -9,14 +9,13 @@ const initialValues = {
   number: '',
 };
 
-export function NameInput({ addstate, state }) {
+export function NameInput({ addContact, contacts }) {
   const handleSubmit = (values, { resetForm }) => {
-    let check = state.contacts.find(e => e.name === values.name);
+    let check = contacts.find(e => e.name === values.name);
 
     if (check === undefined) {
       resetForm();
-
-      addstate(values);
+      addContact(values);
     } else {
       swal(`"${values.name}" is alredy in contacts`, '', 'warning');
     }
@@ -56,13 +55,11 @@ export function NameInput({ addstate, state }) {
 }
 
 NameInput.propTypes = {
-  state: PropTypes.shape({
-    contacts: PropTypes.arrayOf(
-      PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        id: PropTypes.string.isRequired,
-        number: PropTypes.string.isRequired,
-      })
-    ),
-  }),
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ),
 };
