@@ -12,24 +12,13 @@ export const App = () => {
 
   useEffect(() => {
     const localStor = JSON.parse(localStorage.getItem('contacts'));
-
     setContacts(prev => {
       return localStor ?? prev;
     });
   }, []);
 
   useEffect(() => {
-    const localStor = JSON.parse(localStorage.getItem('contacts'));
-    // console.log(0 !== 0 || 2);
-    console.log(localStor !== null);
-    if (localStor === null) {
-      localStorage.setItem('contacts', JSON.stringify(contacts));
-    }
-
-    // localStorage.setItem('contacts', JSON.stringify(contacts));
-    // if (contacts.length > 0) {
-    //   localStorage.setItem('contacts', JSON.stringify(contacts));
-    // }
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
   const addContact = contact => {
@@ -61,54 +50,3 @@ export const App = () => {
     </Wrapper>
   );
 };
-// class oldApp extends Component {
-//   state = {
-//     contacts: [],
-//     filter: '',
-//     name: '',
-//     number: '',
-//   };
-//   componentDidMount() {
-//     if (JSON.parse(localStorage.getItem('contacts'))) {
-//       this.setState({
-//         contacts: JSON.parse(localStorage.getItem('contacts')),
-//       });
-//     }
-//   }
-
-//   componentDidUpdate() {
-//     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-//   }
-
-//   addContact = cont => {
-//     this.setState(prevState => {
-//       cont.id = nanoid();
-//       return {
-//         contacts: [cont, ...prevState.contacts],
-//       };
-//     });
-//   };
-//   deleteContact = cont => {
-//     this.setState(({ contacts }) => {
-//       return {
-//         contacts: contacts.filter(e => e.id !== cont),
-//       };
-//     });
-//   };
-//   getFilter = value => {
-//     let name = value.currentTarget.value.toLowerCase();
-//     this.setState({
-//       filter: name,
-//     });
-//   };
-//   render() {
-//     return (
-//       <Wrapper>
-//         <h1>Phonebook</h1>
-//         <NameInput addstate={this.addContact} state={this.state} />
-//         <Filter filter={this.getFilter} />
-//         <Contacts state={this.state} deleteContact={this.deleteContact} />
-//       </Wrapper>
-//     );
-//   }
-// }
